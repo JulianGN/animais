@@ -1,7 +1,7 @@
 {
   "name": "animais",
   "version": "1.0.0",
-  "description": "",
+  "description": "final project from JS Course from Origamid",
   "main": "index.js",
   "scripts": {
     "build": "webpack --mode production",
