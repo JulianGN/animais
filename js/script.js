@@ -1,35 +1,44 @@
-import initTabNav from './modules/nav-tab.js'
-initTabNav();
+/* eslint-disable import/extensions */
+import initTabNav from './modules/nav-tab.js';
 
 import initAccordion from './modules/accordion.js';
+
+import SmoothScroll from './modules/smooth-scroll.js';
+
+import initAnimScroll from './modules/anim-scroll.js';
+
+import initModal from './modules/modal.js';
+
+import initTooltip from './modules/tooltip.js';
+
+import initDropDownMenu from './modules/dropdown.js';
+
+import initMenuMobile from './modules/menu-mobile.js';
+
+// initAnimaNumeros foi para dentro do fecth-animais
+
+import initFuncionamento from './modules/funcionamento.js';
+
+import initFetchAnimais from './modules/fetch-animais.js';
+
+import initFetchBitcoin from './modules/fetch-bitcoin.js';
+
+initTabNav();
 initAccordion();
 
-import initSmoothScroll from './modules/smooth-scroll.js';
-initSmoothScroll();
+const optionsSmooth = {
+  behavior: 'smooth',
+  block: 'start',
+};
 
-import initAnimScroll from './modules/anim-scroll.js'
+const scrollSuave = new SmoothScroll('[data-tab="menu"] a[href^="#"]', optionsSmooth);
+scrollSuave.init();
+
 initAnimScroll();
-
-import initModal from './modules/modal.js'
 initModal();
-
-import initTooltip from './modules/tooltip.js'
 initTooltip();
-
-import initDropDownMenu from './modules/dropdown.js'
 initDropDownMenu();
-
-import initMenuMobile from './modules/menu-mobile.js'
 initMenuMobile();
-
-//initAnimaNumeros foi para dentro do fecth-animais
-
-import initFuncionamento from './modules/funcionamento.js'
 initFuncionamento();
-
-import initFetchAnimais from './modules/fetch-animais.js'
 initFetchAnimais();
-
-import initFetchBitcoin from './modules/fetch-bitcoin.js'
 initFetchBitcoin();
-

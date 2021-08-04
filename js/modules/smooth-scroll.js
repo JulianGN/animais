@@ -4,34 +4,34 @@
 
 // const activeClass = 'ativo';// para não precisar repetir a class activeClass sempre
 
-export default function initSmoothScroll() {
-  const linksInternos = document.querySelectorAll('[data-tab="menu"] a[href^="#"]');
+export default class SmoothScroll {
+  constructor(links, options) {
+    this.linksInternos = document.querySelectorAll(links);
+    if (options === undefined) {
+      this.options = { behavior: 'smooth', block: 'start' };
+    } else {
+      this.options = options;
+    }
+    this.scrollToSection = this.scrollToSection.bind(this); // utilizar o bind para reforçar que o this é o objeto que deve ser chamado
+  }
 
-  function scrollToSection(event) {
+  scrollToSection(event) {
     event.preventDefault();
-    const href = this.getAttribute('href');
+    const href = event.currentTarget.getAttribute('href');
     const section = document.querySelector(href);
+    section.scrollIntoView(this.options);
+  }
 
-    /* Forma 1: scrollTo:
-        const distancia = section.offsetTop;
-        // window.scrollTo(0,distancia); //-- é possível simplesmente passar os valores x e y, ou criar com o objeto de options, como a seguir:
-        window.scrollTo({
-            top:distancia,
-            behavior:'smooth'
-        });
-        */
-
-    /** **********
-        Forma 2: scrollIntoview()
-        *********** */
-
-    section.scrollIntoView({
-      behavior: 'smooth',
-      block: 'start',
+  addLinkEvent() {
+    this.linksInternos.forEach((link) => {
+      link.addEventListener('click', this.scrollToSection);
     });
   }
 
-  linksInternos.forEach((link) => {
-    link.addEventListener('click', scrollToSection);
-  });
+  init() {
+    if (this.linksInternos.length) {
+      this.addLinkEvent();
+    }
+    return this;
+  }
 }
